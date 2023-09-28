@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Home from './.expo/src/Pantallas/Home';
-import PlatoScreen from './.expo/src/Pantallas/PlatoScreen';
+import Home from './src/Pantallas/Home';
+import PlatoScreen from './src/Pantallas/PlatoScreen';
 
 const Stack = createNativeStackNavigator()
 
