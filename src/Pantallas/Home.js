@@ -1,8 +1,8 @@
 import { FlatList, StyleSheet, Text, View, RefreshControl, TextInput, ScrollView } from 'react-native';
-import Plato from '../Components/Plato'
 import { useEffect, useRef, useState } from 'react'
 import Fetch from '../Hooks/Fetch';
 import Layout from '../Components/Layout';
+import Plato from '../Components/Plato';
 
 const Home = ({ navigation }) => {
     const [listaPlatos, setListaPlatos] = useState([])

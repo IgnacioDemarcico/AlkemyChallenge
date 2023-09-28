@@ -14,7 +14,7 @@ export default function App() {
           options={({navigation}) => ({
             title: "Home",
             headerStyle: {
-              backgroundColor: 'lightcoral'
+              backgroundColor: 'lightblue'
             },
         })} />
         <Stack.Screen name='Plato' component={PlatoScreen}

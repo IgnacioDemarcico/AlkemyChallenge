@@ -5,7 +5,7 @@ export default function Plato({ id, title, image, handlePress }) {
         <TouchableOpacity style={styles.container} onPress={handlePress}>
             {
                 image ? <Image source={{uri: image}} style={styles.image} /> :
-                <Image source={require('/assets/cargando.png')} style={styles.image} />
+                <Image source={require('/assets/Cargando.png')} style={styles.image} />
             }
             <Text style={styles.title}>{title || 'Cargando...'}</Text>
         </TouchableOpacity>
