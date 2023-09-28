@@ -13,7 +13,7 @@ export default function Plato({ id, title, image, handlePress }) {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#8aafeb',
+        backgroundColor: 'white',
         borderRadius: 10,
         borderColor: 'black',
         borderWidth: 2,
