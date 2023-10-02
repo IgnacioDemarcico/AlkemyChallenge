@@ -4,6 +4,6 @@ export default async function Fetch(id) {
     var result
         const response = await fetch(API)
         result = await response.json()
-    if (id) return result.results.find((plato) => plato.id === id)
+    if (id) return result.results.find((plate) => plate.id === id)
     return result.results
 }

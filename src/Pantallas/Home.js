@@ -1,62 +1,61 @@
-import { FlatList, StyleSheet, Text, View, RefreshControl, TextInput, ScrollView } from 'react-native';
+import { FlatList,StyleSheet,RefreshControl,TextInput,ScrollView} from 'react-native';
 import { useEffect, useState } from 'react';
 import Fetch from '../Hooks/Fetch';
 import Layout from '../Components/Layout';
-import Plato from '../Components/Plato';
+import Plate from '../Components/Plate';
 
 const Home = ({ navigation }) => {
-  const [listaPlatos, setListaPlatos] = useState([]);
+  const [platesList, setPlatesList] = useState([]);
   const [refreshing, setRefresh] = useState(false);
-  const [platosFiltrados, setPlatosFiltrados] = useState([]);
-  const [busqueda, setBusqueda] = useState('');
+  const [filterdPlates, setFilteredPlates] = useState([]);
+  const [search, setSearch] = useState('');
 
-  const searchPlatos = async () => {
+  const searchPlates = async () => {
     setRefresh(true);
-    const platos = await Fetch();
+    const plates = await Fetch();
     setRefresh(false);
-    setListaPlatos(platos);
-    setPlatosFiltrados(platos);
+    setPlatesList(plates);
+    setFilteredPlates(plates);
   };
 
   useEffect(() => {
-    searchPlatos();
+    searchPlates();
   }, []);
 
   useEffect(() => {
-    if (!busqueda) return;
-    const nuevosPlatos = [...listaPlatos];
-    const platosFiltrados = nuevosPlatos.filter((plato) =>
-      plato.title.toUpperCase().includes(busqueda.toUpperCase())
+    if (!search) return;
+    const newPlate = [...platesList];
+    const filteredPlates = newPlate.filter((plate) =>
+      plate.title.toUpperCase().includes(search.toUpperCase())
     );
-    setPlatosFiltrados(platosFiltrados);
-  }, [busqueda, listaPlatos]);
+    setFilteredPlates(filteredPlates);
+  }, [search, platesList]);
 
-  const handleChange = (newBusqueda) => setBusqueda(newBusqueda);
+  const handleChange = (newSearch) => setSearch(newSearch);
 
-  const handlePress = (idPlato) => {
-    navigation.navigate('Plato', { idPlato });
+  const handlePress = (idPlate) => {
+    navigation.navigate('Plate', { idPlate: idPlate });
   };
 
   return (
     <Layout>
       <TextInput
-        placeholder="Search"
+        placeholder="Search plate"
         style={styles.textInput}
         onChangeText={handleChange}
-        value={busqueda}
+        value={search}
       />
       <ScrollView style={styles.container}>
         <FlatList
           nestedScrollEnabled={true}
           refreshControl={
             <RefreshControl
-              onRefresh={async () => await searchPlatos()}
-              progressBackgroundColor="lightblue"
+              onRefresh={async () => await searchPlates()}
               refreshing={refreshing}
             />
           }
-          data={platosFiltrados}
-          renderItem={({ item }) => <Plato {...item} handlePress={() => handlePress(item.id)} />}
+          data={filterdPlates}
+          renderItem={({ item }) => <Plate {...item} handlePress={() => handlePress(item.id)} />}
           keyExtractor={(item) => item.id}
         />
       </ScrollView>
@@ -69,10 +68,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
+    marginbottom: 10,
   },
   textInput: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'black',
     borderRadius: 5,
     borderWidth: 1,
     width: '100%',

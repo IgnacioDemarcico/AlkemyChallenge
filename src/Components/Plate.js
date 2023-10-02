@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet,Text,Image,TouchableOpacity} from 'react-native';
 
-export default function Plato({ id, title, image, handlePress }) {
+export default function Plate({ id, title, image, handlePress }) {
     return (
         <TouchableOpacity style={styles.container} onPress={handlePress}>
             {
-                image ? <Image source={{uri: image}} style={styles.image} /> :
-                <Image source={require('/assets/Cargando.png')} style={styles.image} />
+                <Image source={{uri: image}} style={styles.image} />    
             }
-            <Text style={styles.title}>{title || 'Cargando...'}</Text>
+            <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>
     )
 }

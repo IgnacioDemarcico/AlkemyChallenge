@@ -1,29 +1,38 @@
-import { StyleSheet, Text, View} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/Pantallas/Home';
 import PlatoScreen from './src/Pantallas/PlatoScreen';
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home}
-          options={({navigation}) => ({
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: 'lightblue',
+          },
+        }}
+      >
+        <Stack.Screen
+          name='Home'
+          component={Home}
+          options={{
             title: "Home",
-            headerStyle: {
-              backgroundColor: 'lightblue'
-            },
-        })} />
-        <Stack.Screen name='Plato' component={PlatoScreen}
-          options={() => ({
+          }}
+        />
+        <Stack.Screen
+          name='Plato'
+          component={PlatoScreen}
+          options={{
             title: "Plato",
             headerStyle: {
-              backgroundColor: 'lightgreen'
-            }
-          })}
+              backgroundColor: 'white',
+            },
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
