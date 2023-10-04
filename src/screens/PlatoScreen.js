@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native'
-import Plate from '../Components/Plate';
-import Fetch from '../Hooks/Fetch';
+import { StyleSheet} from 'react-native'
+import Plate from '../components/Plate';
+import Fetch from '../hooks/Fetch';
 
 const PlatoScreen = ({ route }) => {
 
@@ -17,7 +17,7 @@ const PlatoScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        display: 'flex',
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',

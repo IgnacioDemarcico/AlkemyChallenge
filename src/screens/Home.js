@@ -6,9 +6,9 @@ import Plate from '../Components/Plate';
 
 const Home = ({ navigation }) => {
   const [platesList, setPlatesList] = useState([]);
-  const [refreshing, setRefresh] = useState(false);
   const [filterdPlates, setFilteredPlates] = useState([]);
   const [search, setSearch] = useState('');
+  const [refreshing, setRefresh] = useState(false);
 
   const searchPlates = async () => {
     setRefresh(true);

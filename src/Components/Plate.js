@@ -1,6 +1,6 @@
 import { StyleSheet,Text,Image,TouchableOpacity} from 'react-native';
 
-export default function Plate({ id, title, image, handlePress }) {
+export default function Plate({title, image, handlePress }) {
     return (
         <TouchableOpacity style={styles.container} onPress={handlePress}>
             {
@@ -15,15 +15,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         borderColor: 'black',
-        borderWidth: 2,
+        borderWidth: 1,
         gap: 10,
         width: 350,
         flexDirection: 'row',
         padding: 10,
     },
     title: {
-        fontSize: 20,
-        fontWeight: '600',
+        fontSize: 15,
+        fontWeight: '500',
     },
     image: { 
         width: '35%', 
