@@ -82,3 +82,4 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
+//crear un eliminar plato de la home y que aparezcan caracts de los platos en la card

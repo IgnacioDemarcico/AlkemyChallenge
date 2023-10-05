@@ -1,30 +1,42 @@
-import { useEffect, useState } from 'react';
-import { StyleSheet} from 'react-native'
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import Layout from '../components/Layout';
 import Plato from '../components/Plate';
-import  Fetch from '../hooks/Fetch';
+import Fetch from '../hooks/Fetch';
 
-const PlatoScreen = ({ route }) => {
+const [plato, setPlato] = useState()
+useEffect(() => {
+    const fetchPlato = async() => setPlato(await Fetch(route.params.idPlate))
+    fetchPlato()
+}, [])
 
-    const [plato, setPlato] = useState()
-    useEffect(() => {
-        const fetchPlato = async() => setPlato(await Fetch(route.params.idPlato))
-        fetchPlato()
-    }, [])
-    return (
-        <Layout>
-            <Plato {...plato} />
-        </Layout>
-    )
-}
+  return (
+    <Layout>
+      {plato ? (
+        <View>
+          <Plato {...plato} />
+          <Text style={styles.label}>Diet: {plato.diet}</Text>
+          <Text style={styles.label}>Intolerances: {plato.intolerances}</Text>
+        </View>
+      ) : (
+        <View style={styles.loadingContainer}>
+          <Text>Cargando información...</Text>
+        </View>
+      )}
+    </Layout>
+  );
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  label: {
+    fontSize: 16,
+    marginTop: 10,
+  },
+});
 
-export default PlatoScreen
+export default PlatoScreen;
+//crear un guardar plato y que este se guarde en el contextState
