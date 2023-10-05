@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet} from 'react-native'
-import Plate from '../components/Plate';
-import Fetch from '../hooks/Fetch';
+import Layout from '../components/Layout';
+import Plato from '../components/Plate';
+import  Fetch from '../hooks/Fetch';
 
 const PlatoScreen = ({ route }) => {
 
-    const [plate, setPlate] = useState()
+    const [plato, setPlato] = useState()
     useEffect(() => {
-        const fetchPlate = async() => setPlate(await Fetch(true, route.params.idPlate))
-        fetchPlate()
+        const fetchPlato = async() => setPlato(await Fetch(route.params.idPlato))
+        fetchPlato()
     }, [])
     return (
-         <Plate {...plate} />
+        <Layout>
+            <Plato {...plato} />
+        </Layout>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        display: 'flex',
+        flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',

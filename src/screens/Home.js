@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     if (!search) return;
-    const newPlate = [...platesList];
+    const newPlate = [...platesList]; 
     const filteredPlates = newPlate.filter((plate) =>
       plate.title.toUpperCase().includes(search.toUpperCase())
     );
@@ -34,7 +34,7 @@ const Home = ({ navigation }) => {
   const handleChange = (newSearch) => setSearch(newSearch);
 
   const handlePress = (idPlate) => {
-    navigation.navigate('Plate', { idPlate: idPlate });
+    navigation.navigate('Plato', { idPlate: idPlate });
   };
 
   return (
