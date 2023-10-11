@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Layout from '../Components/Layout';
 import Plate from '../Components/Plate';
-import Fetch from '../hooks/Fetch';
+import FetchInformation from '../hooks/Fetch';
 
-const PlatoScreen = () => {
-  const [plato, setPlato] = useState()
+const PlatoScreen = ({route,navigation}) => {
+  const [plate, setPlate] = useState()
   useEffect(() => {
-      const fetchPlato = async() => setPlato(await Fetch(route.params.idPlate))
+      console.log(plate)
+      const fetchPlato = async() => setPlate(await FetchInformation(route.params.idPlate))
       fetchPlato()
   }, [])
   
     return (
       <Layout>
-        {plato ? (
+        {plate ? (
           <View>
-            <Plato {...plato} />
-            <Text style={styles.label}>Diet: {plato.diet}</Text>
-            <Text style={styles.label}>Intolerances: {plato.intolerances}</Text>
+            <Plate {...plate} />
+            <Text style={styles.label}>Diet: {plate.diet}</Text>
+            <Text style={styles.label}>Intolerances: {plate.intolerances}</Text>
           </View>
         ) : (
           <View style={styles.loadingContainer}>
