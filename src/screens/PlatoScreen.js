@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Layout from '../components/Layout';
-import Plato from '../components/Plate';
+import Layout from '../Components/Layout';
+import Plate from '../Components/Plate';
 import Fetch from '../hooks/Fetch';
 
-const [plato, setPlato] = useState()
-useEffect(() => {
-    const fetchPlato = async() => setPlato(await Fetch(route.params.idPlate))
-    fetchPlato()
-}, [])
+const PlatoScreen = () => {
+  const [plato, setPlato] = useState()
+  useEffect(() => {
+      const fetchPlato = async() => setPlato(await Fetch(route.params.idPlate))
+      fetchPlato()
+  }, [])
+  
+    return (
+      <Layout>
+        {plato ? (
+          <View>
+            <Plato {...plato} />
+            <Text style={styles.label}>Diet: {plato.diet}</Text>
+            <Text style={styles.label}>Intolerances: {plato.intolerances}</Text>
+          </View>
+        ) : (
+          <View style={styles.loadingContainer}>
+            <Text>Cargando información...</Text>
+          </View>
+        )}
+      </Layout>
+    );
+}
 
-  return (
-    <Layout>
-      {plato ? (
-        <View>
-          <Plato {...plato} />
-          <Text style={styles.label}>Diet: {plato.diet}</Text>
-          <Text style={styles.label}>Intolerances: {plato.intolerances}</Text>
-        </View>
-      ) : (
-        <View style={styles.loadingContainer}>
-          <Text>Cargando información...</Text>
-        </View>
-      )}
-    </Layout>
-  );
 
 const styles = StyleSheet.create({
   loadingContainer: {
