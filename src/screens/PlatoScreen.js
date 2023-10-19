@@ -7,7 +7,6 @@ import FetchInformation from '../hooks/Fetch';
 const PlatoScreen = ({route,navigation}) => {
   const [plate, setPlate] = useState()
   useEffect(() => {
-      console.log(plate)
       const fetchPlato = async() => setPlate(await FetchInformation(route.params.idPlate))
       fetchPlato()
   }, [])
@@ -17,7 +16,8 @@ const PlatoScreen = ({route,navigation}) => {
         {plate ? (
           <View>
             <Plate {...plate} />
-            <Text style={styles.label}>Diet: {plate.diet}</Text>
+            <Text style={styles.label}>Vegan: {plate.vegetarian}</Text>
+            {console.log(plate.vegetarian)}
             <Text style={styles.label}>Intolerances: {plate.intolerances}</Text>
           </View>
         ) : (

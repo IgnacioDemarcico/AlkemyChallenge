@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
 import PlatoScreen from './src/screens/PlatoScreen';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
             },
           }}
         />
+        {/*<Stack.Screen name="Login" component={Login} />*/}
       </Stack.Navigator>
     </NavigationContainer>
   )

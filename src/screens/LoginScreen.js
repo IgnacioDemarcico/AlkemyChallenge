@@ -1,69 +1,68 @@
-import { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { useAuth } from '../context/AuthenticatorContext';
+import { StyleSheet, Text, View, Alert, SafeAreaView, TouchableOpacity, FlatList, TextInput } from "react-native";
+import React, { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
+import { useAuth } from '../navigation/AuthenticatorContext';
 
-const LoginScreen = ({ navigation }) => {
-  const { login, loading } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function InicioDeSesion({ navigation }) {
+    const [validated, setValidated] = useState(false);
+    const { login, loading } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    try {
-      // Realiza la llamada a la función de inicio de sesión del contexto
-      await login(email, password);
-      
-      // Redirige al usuario a la pantalla de inicio o a donde desees
-      navigation.navigate('Home');
-    } catch (error) {
-      // Maneja los errores de inicio de sesión, por ejemplo, muestra un mensaje de error
-      console.error('Error al iniciar sesión:', error);
+    const handleLogin = async () => {
+        if(email != '' && password != ''){
+            try {
+                await login(email, password)
+                navigation.navigate('Home')
+            } catch (error) {
+                console.error('Error al iniciar sesión:', error);
+            }
+        }
+        else{
+            alert("Complete los campos")
+        }
     }
-  };
+    return (
+        <View style={styles.container}>
+            <Text style={styles.titulo}>Iniciar Sesión</Text>
+            <TextInput
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Iniciar Sesión</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-      />
-      <Button
-        title="Iniciar Sesión"
-        onPress={handleLogin}
-        disabled={loading}
-      />
-    </View>
-  );
-};
+                placeholder="Correo electrónico"
+                onChangeText={(text) => setEmail(text)}
+                value={email}
+            />
+            <TextInput
+                placeholder="Contraseña"
+                secureTextEntry
+                onChangeText={(text) => setPassword(text)}
+                value={password}
+            />
+            <TouchableOpacity onPress={handleLogin}>
+            <Button
+                title="Iniciar Sesión"
+                disabled={loading}
+            />
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 8,
-  },
+    container: {
+        display: "flex",
+        flex: 1,
+        fontFamily: "Alata",
+        backgroundColor: 'white',
+    },
+    titulo: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: "bold",
+        fontSize: "1.5rem",
+        marginTop: "3rem",
+        marginBottom: "3rem",
+    },
 });
-
-export default LoginScreen;
